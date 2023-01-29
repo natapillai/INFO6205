@@ -19,6 +19,7 @@ public class ThreeSumBenchmark {
         System.out.println("ThreeSumBenchmark: N=" + n);
         benchmarkThreeSum("ThreeSumQuadratic", (xs) -> new ThreeSumQuadratic(xs).getTriples(), n, timeLoggersQuadratic);
         benchmarkThreeSum("ThreeSumQuadrithmic", (xs) -> new ThreeSumQuadrithmic(xs).getTriples(), n, timeLoggersQuadrithmic);
+        benchmarkThreeSum("ThreeSumQuadraticWithCalipers", (xs) -> new ThreeSumQuadraticWithCalipers(xs).getTriples(), n, timeLoggersQuadratic);
         benchmarkThreeSum("ThreeSumCubic", (xs) -> new ThreeSumCubic(xs).getTriples(), n, timeLoggersCubic);
     }
 
@@ -35,6 +36,18 @@ public class ThreeSumBenchmark {
     private void benchmarkThreeSum(final String description, final Consumer<int[]> function, int n, final TimeLogger[] timeLoggers) {
         if (description.equals("ThreeSumCubic") && n > 4000) return;
         // FIXME
+
+        System.out.println("Benchmark Description: " + description);
+
+        Benchmark_Timer<int[]> timer = new Benchmark_Timer<>(description, function);
+        double avgtime = timer.runFromSupplier(this.supplier, runs);
+
+        System.out.println("Average Time = " + avgtime);
+
+        for (TimeLogger log : timeLoggers) {
+            log.log(avgtime, this.n);
+        }
+
         // END 
     }
 

@@ -4,7 +4,10 @@
 
 package edu.neu.coe.info6205.randomwalk;
 
-import java.util.Random;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
 
 public class RandomWalk {
 
@@ -21,8 +24,12 @@ public class RandomWalk {
      */
     private void move(int dx, int dy) {
         // FIXME do move by replacing the following code
-         throw new RuntimeException("Not implemented");
-        // END 
+
+        x = x + dx;
+        y = y + dy;
+
+//         throw new RuntimeException("Not implemented");
+        // END
     }
 
     /**
@@ -32,7 +39,12 @@ public class RandomWalk {
      */
     private void randomWalk(int m) {
         // FIXME
-        // END 
+
+        for(int i=0; i<m; i++){
+            randomMove();
+        }
+
+        // END
     }
 
     /**
@@ -52,8 +64,9 @@ public class RandomWalk {
      */
     public double distance() {
         // FIXME by replacing the following code
-         return 0.0;
-        // END 
+        return Math.sqrt(Math.pow(x,2)+Math.pow(y,2));
+//         return ((x^2 + y^2)^(1/2));
+        // END
     }
 
     /**
@@ -74,13 +87,49 @@ public class RandomWalk {
     }
 
     public static void main(String[] args) {
-        if (args.length == 0)
-            throw new RuntimeException("Syntax: RandomWalk steps [experiments]");
-        int m = Integer.parseInt(args[0]);
-        int n = 30;
-        if (args.length > 1) n = Integer.parseInt(args[1]);
-        double meanDistance = randomWalkMulti(m, n);
-        System.out.println(m + " steps: " + meanDistance + " over " + n + " experiments");
+        int m = 10;
+        int n = 20000;
+
+        String[] header = {"m", "d", "log(m)", "log(d)","Ratio = Log(m)/Log(d)"};
+
+        List<Double[]> list = new ArrayList<>();
+//        list.add(header);
+
+        for (int i = 1; i <= n; i++) {
+            if (args.length > 1) n = Integer.parseInt(args[1]);
+            double msteps = m;
+            double meanD = randomWalkMulti(m, 1000);
+            double ratio = Math.log(m) / Math.log(meanD);
+            double logm = Math.log(m);
+            double logd = Math.log(meanD);
+
+            System.out.println(m + " steps: " + meanD + " over " + n + " experiments " + ratio + "=ratio " + logm + "=logm " + logd + "=logd ");
+            m = m + 1;
+
+            Double[] record = {msteps, meanD, logm, logd, ratio};
+
+            list.add(record);
+
+        }
+
+
+        try {
+            FileWriter fw = new FileWriter("data.csv");
+
+            try (BufferedWriter bw = new BufferedWriter(fw)) {
+
+                for (Double[] data : list) {
+
+                    bw.write(Arrays.toString(data));
+                    bw.newLine();
+
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
 }
