@@ -8,6 +8,7 @@
 package edu.neu.coe.info6205.union_find;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * Height-weighted Quick Union with Path Compression
@@ -82,7 +83,15 @@ public class UF_HWQUPC implements UF {
         validate(p);
         int root = p;
         // FIXME
-        // END 
+
+        while (root != parent[root]){
+            if (this.pathCompression) {
+                doPathCompression(p);
+            }
+            root = parent[root];
+        }
+
+        // END
         return root;
     }
 
@@ -170,6 +179,23 @@ public class UF_HWQUPC implements UF {
 
     private void mergeComponents(int i, int j) {
         // FIXME make shorter root point to taller one
+
+        int rootX = find(i);
+        int rootY = find(j);
+
+        if (rootX == rootY) {
+            parent[rootX] = rootY;
+            height[rootY]++;
+        }
+        else if (height[rootX] < height[rootY]) {
+            parent[rootX] = rootY;
+            height[rootY] += height[rootX];
+        }
+        else {
+            parent[rootY] = rootX;
+            height[rootX] += height[rootY];
+        }
+
         // END 
     }
 
@@ -178,6 +204,45 @@ public class UF_HWQUPC implements UF {
      */
     private void doPathCompression(int i) {
         // FIXME update parent to value of grandparent
+
+        parent[i] = parent[parent[i]];
+
         // END 
     }
+
+    public static int count(int n) {
+        UF_HWQUPC uf = new UF_HWQUPC(n);
+        Random rand = new Random();
+        int cnt = 0;
+
+        while (uf.count > 1) {
+            int p = rand.nextInt(n);
+            int q = rand.nextInt(n);
+            if (!uf.connected(p,q)) {
+                uf.union(p, q);
+            }
+            cnt++;
+        }
+
+        return cnt;
+    }
+
+    public static void main(String[] args) {
+
+        int N[] = {1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, 256000, 512000, 1024000};
+        int runs = 100;
+
+        for(int j = 0; j < N.length; j++) {
+            int value = N[j];
+            int count = 0;
+            for(int i = 0; i < runs; i++) {
+                count += count(value);
+            }
+
+            int average = count/runs;
+            System.out.println("No.of objects = " + value + ", Average number of pairs for " + runs + " runs= " + average);
+        }
+
+    }
+
 }
