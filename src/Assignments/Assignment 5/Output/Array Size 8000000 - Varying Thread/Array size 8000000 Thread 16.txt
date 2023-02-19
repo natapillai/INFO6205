@@ -1,0 +1,24 @@
+C:\Users\natap\.jdks\openjdk-19.0.2\bin\java.exe "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.3.1\lib\idea_rt.jar=63483:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.3.1\bin" -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath "C:\Users\natap\OneDrive\Northeastern University Work\Spring 2023\INFO6205\Robin\Class Repository Forked Clone\INFO6205\target\classes;C:\Users\natap\.m2\repository\com\phasmidsoftware\args_2.13\1.0.3\args_2.13-1.0.3.jar;C:\Users\natap\.m2\repository\org\scala-lang\scala-library\2.13.7\scala-library-2.13.7.jar;C:\Users\natap\.m2\repository\org\scala-lang\modules\scala-parser-combinators_2.13\1.1.2\scala-parser-combinators_2.13-1.1.2.jar;C:\Users\natap\.m2\repository\org\apache\logging\log4j\log4j-api\2.19.0\log4j-api-2.19.0.jar;C:\Users\natap\.m2\repository\log4j\log4j\1.2.17\log4j-1.2.17.jar;C:\Users\natap\.m2\repository\com\google\guava\guava\31.1-jre\guava-31.1-jre.jar;C:\Users\natap\.m2\repository\com\google\guava\failureaccess\1.0.1\failureaccess-1.0.1.jar;C:\Users\natap\.m2\repository\com\google\guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\natap\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\natap\.m2\repository\org\checkerframework\checker-qual\3.12.0\checker-qual-3.12.0.jar;C:\Users\natap\.m2\repository\com\google\errorprone\error_prone_annotations\2.11.0\error_prone_annotations-2.11.0.jar;C:\Users\natap\.m2\repository\com\google\j2objc\j2objc-annotations\1.3\j2objc-annotations-1.3.jar;C:\Users\natap\.m2\repository\org\ini4j\ini4j\0.5.4\ini4j-0.5.4.jar" edu.neu.coe.info6205.sort.par.Main
+Degree of parallelism: 16
+cutoff：400000		10times Time:2206ms
+cutoff：800000		10times Time:1754ms
+cutoff：1200000		10times Time:1723ms
+cutoff：1600000		10times Time:1724ms
+cutoff：2000000		10times Time:1740ms
+cutoff：2400000		10times Time:2108ms
+cutoff：2800000		10times Time:2087ms
+cutoff：3200000		10times Time:2066ms
+cutoff：3600000		10times Time:2070ms
+cutoff：4000000		10times Time:2077ms
+cutoff：4400000		10times Time:2852ms
+cutoff：4800000		10times Time:2847ms
+cutoff：5200000		10times Time:2860ms
+cutoff：5600000		10times Time:2867ms
+cutoff：6000000		10times Time:2847ms
+cutoff：6400000		10times Time:2838ms
+cutoff：6800000		10times Time:2876ms
+cutoff：7200000		10times Time:2856ms
+cutoff：7600000		10times Time:2856ms
+cutoff：8000000		10times Time:2868ms
+
+Process finished with exit code 0
