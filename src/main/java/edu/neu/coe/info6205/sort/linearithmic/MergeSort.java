@@ -65,7 +65,14 @@ public class MergeSort<X extends Comparable<X>> extends SortWithHelper<X> {
         }
 
         // FIXME : implement merge sort with insurance and no-copy optimizations
-        // END 
+
+        int mid = from + (to - from)/2;
+        sort(aux, a, from, mid);
+        sort(aux, a, mid, to);
+
+        merge(aux, a, from, mid, to);
+
+        // END
     }
 
     // CONSIDER combine with MergeSortBasic perhaps.
@@ -95,4 +102,3 @@ public class MergeSort<X extends Comparable<X>> extends SortWithHelper<X> {
 
     private final InsertionSort<X> insertionSort;
 }
-
